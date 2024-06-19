@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card">
+    <h2 class="center-text">კანდიდატის წაშლა</h2>
+    <p class="center-text">დარწმუნებული ხართ რომ გსურთ ამოშალოთ კანდიდატი {{ candidate.name }} {{ candidate.surname }}?</p>
+    <form method="post" class="centered-button">
+        {% csrf_token %}
+        <button type="submit" class="button">დამოწმება</button>
+    </form>
+</div>
+<div class="centered-button">
+    <a href="{% url 'candidate_list' %}" class="button">უკან დაბრუნება</a>
+</div>
+{% endblock %}

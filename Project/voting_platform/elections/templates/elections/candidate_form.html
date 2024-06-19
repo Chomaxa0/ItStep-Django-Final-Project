@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card">
+    <h2 class="center-text">
+        {% if form.instance.pk %}
+            ინფორმაციის რედაქტირება
+        {% else %}
+            ახალი კანდიდატის დამატება
+        {% endif %}
+    </h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_name">სახელი:</label>
+            {{ form.name }}
+        </div>
+        <div class="form-group">
+            <label for="id_surname">გვარი:</label>
+            {{ form.surname }}
+        </div>
+        <div class="form-group">
+            <label for="id_party">პარტია:</label>
+            {{ form.party }}
+        </div>
+        <div class="form-group">
+            <label for="id_age">ასაკი:</label>
+            {{ form.age }}
+        </div>
+        <div class="centered-button">
+            <button type="submit" class="button">დაფიქსირება</button>
+        </div>
+    </form>
+</div>
+<div class="centered-button">
+    <a href="{% url 'candidate_list' %}" class="button">უკან დაბრუნება</a>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 style="text-align: center;">კანდიდატთა სია</h1>
+<div class="card">
+    <ul>
+        {% for candidate in candidates %}
+            <li>
+                {{ candidate.name }} {{ candidate.surname }} (პარტია: {{ candidate.party }}, ასაკი: {{ candidate.age }})
+                {% if user.is_superuser %}
+                    - ხმათა რაოდენობა: {{ candidate.vote_set.count }}
+                {% endif %}
+                {% if not user.is_staff %}
+                    <a href="{% url 'vote' candidate.pk %}">ხმის მიცემა</a>
+                {% endif %}
+                <a href="{% url 'candidate_update' candidate.pk %}">რედაქტირება</a> |
+                <a href="{% url 'candidate_delete' candidate.pk %}">წაშლა</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+<div class="centered-links">
+    <a href="{% url 'candidate_create' %}">ახალი კანდიდატის დამატება</a>
+    <span></span>
+    {% if not user.is_superuser %}
+        <a href="{% url 'homepage' %}">უკან დაბრუნება</a>
+    {% endif %}
+</div>
+{% endblock %}
+
+
+
+
