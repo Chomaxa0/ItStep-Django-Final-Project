@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card">
+    <h2 class="center-text">აუტენტიფიკაცია</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="form-group">
+            <label for="id_custom_username">მომხმარებელი:</label>
+            {{ form.custom_username }}
+        </div>
+        <div class="form-group">
+            <label for="id_custom_password">პაროლი:</label>
+            {{ form.custom_password }}
+        </div>
+        <div class="centered-button">
+            <button type="submit" class="button">შესვლა</button>
+        </div>
+    </form>
+</div>
+<div class="centered-button">
+    <a href="{% url 'homepage' %}" class="button">მთავარი გვერდი</a>
+</div>
+{% endblock %}
